@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+body {
+    display: grid;
+    height: 100vh;
+    place-content: center;
+}
+
+header {
+    text-align: center;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+main{
+    margin-top: 2rem;
+    border: 1px solid darkcyan;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: center;
+}
+
+button{
+    cursor: pointer;
+}
+
