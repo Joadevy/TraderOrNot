@@ -37,8 +37,9 @@ const showRequest = async(ticker) => {
         let result = await response.json();
         startPrice = result.price;
         console.log('el precio inicial es: ' + startPrice);
+        let currency = getCurrencyName(result.symbol);
         // let roundPrice = Math.round(result.price) >>>>>  Find a form to round into 2/3 decimals.
-        container.textContent = `Crypto currency: ${result.symbol} and the actual price is: ${result.price}`;
+        container.innerHTML = `Crypto currency: <span>${currency}</span> and the actual price is: <span>${result.price}</span>`;
     } catch (error) {
         console.log(error);
     }
@@ -118,9 +119,30 @@ const appearButtons = () => {
     buttons.appendChild(low);
 }
 
+const getCurrencyName = ticker => {
+    switch (ticker){
+        case 'BTCUSDT':
+            return 'Bitcoin';
+        break;
+        case 'SOLUSDT':
+            return 'Solana';
+        break;
+        case 'ETHUSDT':
+            return 'Ethereum';
+        break;
+        case 'LTCUSDT':
+            return 'Litecoin';
+        break;
+        case 'BNBUSDT':
+            return 'Binance Coin';
+        break;
+    }
+}
+
 const startGame = () => {
     appearButtons();
     selectCoin();
 }
 
 startGame();
+
