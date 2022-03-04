@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Titillium+Web&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -18,6 +20,7 @@ body {
 header {
     text-align: center;
     margin-bottom: 1.25rem;
+    font-family: 'Hubballi',Arial, Helvetica, sans-serif;
 }
 
 header p {
@@ -40,7 +43,25 @@ main{
     color: whitesmoke;
 }
 
+.description, .price, button, .result{
+    font-family: 'Titillium Web';
+}
+
+span {
+    color: rgb(255, 183, 94);
+}
+
 button{
     cursor: pointer;
+    border: none;
+    margin-right: 1rem;
+    border: 1px solid darkorange;
+    padding: .25rem;
+    border-radius: 5px;
+    background-color:rgb(63, 63, 63) ;
+}
+
+button:hover {
+    opacity: .75;
 }
 
