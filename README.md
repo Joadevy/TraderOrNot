@@ -1,0 +1,2 @@
+# TraderOrNot
+PROJECT IN PROGRESS
