@@ -6,8 +6,13 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px;
+}
+
 :root {
     color-scheme: dark;
+    font-size: 16px;
 }
 
 body {
@@ -57,6 +62,7 @@ span {
 }
 
 button{
+    color: whitesmoke;
     cursor: pointer;
     border: none;
     margin-right: 16px;
