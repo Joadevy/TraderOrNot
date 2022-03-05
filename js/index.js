@@ -93,7 +93,7 @@ const setResult = (result,btn) => {
 }
 
 const updateScore = () => {
-    result.lastElementChild.innerHTML = `SCORE: ${score}`;
+    result.firstElementChild.innerHTML = `${score}`;
 }
 
 const dissapearButtons = () => {
