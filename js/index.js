@@ -2,21 +2,12 @@ container = document.querySelector('.price');
 result = document.querySelector('.result');
 buttons = document.querySelector('.buttons');
 
+const endpoint = "https://api.binance.com/api/v3/ticker/price";
 let startPrice;
 let finalPrice;
 let ticker;
-const endpoint = "https://api.binance.com/api/v3/ticker/price";
+let index;
 let score = 0;
-
-/*  highbtn.addEventListener('click', async()=> {
-    setTimeout(() => compareRequest(ticker,'high'),5000);
-    dissapearButtons();
-})
-
-lowbtn.addEventListener('click', async()=> {
-    setTimeout(() => compareRequest(ticker,'low'),5000);
-    dissapearButtons();
-})  */
 
 // Function that creates concats the data in the URL to make the GET request.
 function encodeQueryData(data){
@@ -38,8 +29,10 @@ const showRequest = async(ticker) => {
         startPrice = result.price;
         console.log('el precio inicial es: ' + startPrice);
         let currency = getCurrencyName(result.symbol);
+        let price = parseFloat(result.price);
         // let roundPrice = Math.round(result.price) >>>>>  Find a form to round into 2/3 decimals.
-        container.innerHTML = `Crypto currency: <span>${currency}</span> and the actual price is: <span>${result.price}</span>`;
+        container.innerHTML = `Crypto currency: <span>${currency}</span> and the actual price is: <span>${price}</span>`;
+        appearButtons();
     } catch (error) {
         console.log(error);
     }
@@ -54,42 +47,50 @@ const compareRequest = async(ticker,btn) => {
         let response = await fetch(endpoint+'?'+dataRequest);
         let result = await response.json();
         finalPrice = result.price;
-        console.log('el precio final es: ' + finalPrice);
-        if (finalPrice > startPrice) {
-            setResult('final',btn)
-        } else if (finalPrice < startPrice){
-            setResult('start',btn)
-        } else {
-            setResult('equal');
-        }
+        //console.log('el precio final es: ' + finalPrice);
+        setResult(btn);
     } catch (error) {
         console.log(error);
     }
 }
 
-//request('ETHUSDT')
-//setInterval(() => request('ETHUSDT'),5000);
-
 const selectCoin = async() => {
     const REQUEST = await fetch('../js/tickers.json');
     const DATA = await REQUEST.json();
-    let index = Math.round(Math.random()*4);
+    let newIndex;
+    do {
+        newIndex = Math.round(Math.random()*4);
+    }
+    while(newIndex == index);
+    index = newIndex;
     ticker = DATA[index].symbol;
     await showRequest(ticker);
 }
 
-const setResult = (result,btn) => {
-    if (result == 'final' && btn == 'high') {
-        console.log('WIN');
+const setResult = (btn) => {
+    if (finalPrice > startPrice && btn == 'high') {
+        showResult(true);
         score++;
-    } else if (result == 'start' && btn == 'low'){
-        console.log('WIN');
+    } else if (finalPrice < startPrice && btn == 'low'){
+        showResult(true);
         score++;
     } else {
         console.log('LOSER');
+        showResult(false);
     }
-    updateScore();
-    startGame()
+    // showResult();
+    // startGame()
+}
+
+const createScore = () => {
+    const scorePoint = document.createElement('P');
+    scorePoint.classList.add('scorePoint');
+    scorePoint.innerHTML= 0;
+    const score = document.createElement('P');
+    score.classList.add('score');
+    score.textContent = 'SCORE'; 
+    result.appendChild(scorePoint);
+    result.appendChild(score);
 }
 
 const updateScore = () => {
@@ -102,19 +103,23 @@ const dissapearButtons = () => {
 }
 
 const appearButtons = () => {
+    buttons.textContent = '';
     let high = document.createElement('BUTTON');
     high.classList.add('button','high');
     high.textContent = 'Higher price';
     high.onclick = async()=> {
         setTimeout(() => compareRequest(ticker,'high'),5000);
-        dissapearButtons();
+        dissapearButtons()
+        countDown();
     };
     let low = document.createElement('BUTTON');
     low.classList.add('button','low');
     low.textContent = 'Lower price';
     low.onclick = async()=> {
         setTimeout(() => compareRequest(ticker,'low'),5000);
-        dissapearButtons(); }
+        dissapearButtons();
+        countDown();
+    }
     buttons.appendChild(high);
     buttons.appendChild(low);
 }
@@ -140,9 +145,47 @@ const getCurrencyName = ticker => {
 }
 
 const startGame = () => {
-    appearButtons();
     selectCoin();
 }
 
-startGame();
+const countDown = () =>{
+    let second = 5;
+    const interval = setInterval(()=> {
+            buttons.textContent = second;
+            second--;
+        }, 1000);
+    setTimeout(()=>{
+        clearInterval(interval);
+    },5000);
+}
 
+const initialScreen = () => {
+    const option = document.createElement('BUTTON');
+    option.classList.add('start');
+    option.textContent = 'Start game';
+    option.onclick = (() =>{
+        startGame();
+    })
+    container.appendChild(option);
+}
+
+const showResult = (status) => {
+    buttons.textContent = '';
+    let price = parseFloat(finalPrice);
+    if (status == true) {
+        container.innerHTML = `<span class='win'>YOU WIN!</span> The final price was <span>${price}</span>`;
+    } else if (status == false) {
+        container.innerHTML = `<span class='lose'>YOU LOSE!</span> The final price was <span>${price}</span>`;
+    }
+    nextGame();
+}
+
+const nextGame = () => {
+    nextBtn = document.createElement('BUTTON');
+    nextBtn.classList.add('next');
+    nextBtn.onclick = ( () => {startGame()});
+    nextBtn.textContent = 'Give me another chance'
+    container.appendChild(nextBtn);
+}
+
+initialScreen();
