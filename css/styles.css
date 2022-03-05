@@ -19,7 +19,7 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 1.25rem;
+    margin-bottom: .5rem;
     font-family: 'Hubballi',Arial, Helvetica, sans-serif;
 }
 
@@ -51,17 +51,39 @@ span {
     color: rgb(255, 183, 94);
 }
 
+.buttons {
+    height: 2rem;
+}
+
 button{
     cursor: pointer;
     border: none;
     margin-right: 1rem;
-    border: 1px solid darkorange;
     padding: .25rem;
-    border-radius: 5px;
+    border-radius: 7px;
     background-color:rgb(63, 63, 63) ;
 }
 
 button:hover {
     opacity: .75;
+}
+
+.low {
+    border: 1px solid rgb(255, 44, 44);
+}
+
+.high{
+    border: 1px solid rgb(45, 255, 80);
+}
+
+.scorePoint {
+    margin-top: .75rem;
+    border: 1px solid whitesmoke;
+    background-color: darkorange;
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    font-size: 1.5rem;
 }
 
