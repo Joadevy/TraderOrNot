@@ -55,7 +55,7 @@ const compareRequest = async(ticker,btn) => {
 }
 
 const selectCoin = async() => {
-    const REQUEST = await fetch('../js/tickers.json');
+    const REQUEST = await fetch('js/tickers.json');
     const DATA = await REQUEST.json();
     let newIndex;
     do {
