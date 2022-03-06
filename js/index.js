@@ -7,7 +7,6 @@ let startPrice;
 let finalPrice;
 let ticker;
 let index;
-let score = 0;
 
 // Function that creates concats the data in the URL to make the GET request.
 function encodeQueryData(data){
@@ -70,31 +69,11 @@ const selectCoin = async() => {
 const setResult = (btn) => {
     if (finalPrice > startPrice && btn == 'high') {
         showResult(true);
-        score++;
     } else if (finalPrice < startPrice && btn == 'low'){
         showResult(true);
-        score++;
     } else {
-        console.log('LOSER');
         showResult(false);
     }
-    // showResult();
-    // startGame()
-}
-
-const createScore = () => {
-    const scorePoint = document.createElement('P');
-    scorePoint.classList.add('scorePoint');
-    scorePoint.innerHTML= 0;
-    const score = document.createElement('P');
-    score.classList.add('score');
-    score.textContent = 'SCORE'; 
-    result.appendChild(scorePoint);
-    result.appendChild(score);
-}
-
-const updateScore = () => {
-    result.firstElementChild.innerHTML = `${score}`;
 }
 
 const dissapearButtons = () => {
@@ -177,14 +156,23 @@ const showResult = (status) => {
     } else if (status == false) {
         container.innerHTML = `<span class='lose'>YOU LOSE!</span> The final price was <span>${price}</span>`;
     }
-    nextGame();
+    nextGame(status);
+    if (result.firstElementChild === null) {
+        createScore();
+        updateScore();
+    }
+    updateScore();
 }
 
-const nextGame = () => {
+const nextGame = (status) => {
     nextBtn = document.createElement('BUTTON');
     nextBtn.classList.add('next');
     nextBtn.onclick = ( () => {startGame()});
-    nextBtn.textContent = 'Give me another chance'
+    if (status === false){
+        nextBtn.textContent = 'Give me another chance'
+    } else {
+        nextBtn.textContent = 'Try me again'
+    }
     container.appendChild(nextBtn);
 }
 
