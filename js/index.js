@@ -174,13 +174,31 @@ const countDown = () =>{
 
 // The first-game screen to start the game with the button. It needs to include a FAQ button for explain what happen with the crypto volatility.
 const initialScreen = () => {
-    const option = document.createElement('BUTTON');
-    option.classList.add('start');
-    option.textContent = 'Start game';
-    option.onclick = (() =>{
+    container.textContent = '';
+    const optionStart = document.createElement('BUTTON');
+    optionStart.classList.add('start');
+    optionStart.textContent = 'Start game';
+    optionStart.onclick = (() =>{
         startGame();
     })
-    container.appendChild(option);
+    container.appendChild(optionStart);
+
+    const optionFAQ = document.createElement('BUTTON');
+    optionFAQ.classList.add('faq');
+    optionFAQ.textContent = 'FAQ';
+    optionFAQ.onclick = (()=> {
+        showInformation();
+    })
+    container.appendChild(optionFAQ);
+}
+
+const showInformation = () => {
+    container.innerHTML = `
+    <h3>Why the price changes every 5 seconds?</h3>
+    <p>> Because the crypto-currency is a very volatile asset and the market is open 24/7.</p>
+    <h3>How does this game work?</h3>
+    <p>> Basically you</p>
+    <button class = 'return' onclick = "initialScreen()">Return</button>`
 }
 
 initialScreen();
