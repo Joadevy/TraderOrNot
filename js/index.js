@@ -94,12 +94,12 @@ const secondRequest = async(ticker,btn) => {
 
 // Compares the first and second prices from the requests and the input of the user.
 const setResult = (btn) => {
-    if (finalPrice > startPrice && btn == 'high') {
+    if (finalPrice > startPrice && btn == 'high' || finalPrice < startPrice && btn == 'low') {
         showResult(true,btn);
-    } else if (finalPrice < startPrice && btn == 'low'){
-        showResult(true,btn);
-    } else {
+    } else if (finalPrice > startPrice && btn == 'low' || finalPrice < startPrice && btn == 'high'){
         showResult(false,btn);
+    } else {
+        showResult('equal',btn);
     }
 }
 
@@ -114,6 +114,9 @@ const showResult = (status,btn) => {
     } else if (status == false) {
         container.innerHTML = `<span class='lose'>YOU LOSE!</span> <p>The starting price was <span>${priceStart}</span></p>
         <p>The final price was <span>${price}</span></p> <p>& you chose: <span>${btn}</span> price</p>`;
+    } else {
+        container.innerHTML = `<span>OOPS!</span> <p>The starting price was <span>${priceStart}</span></p>
+        <p>The final price was <span>${price}</span></p>The price didn't change :(</p>`;
     }
     nextGame(status);
 }
@@ -125,8 +128,10 @@ const nextGame = (status) => {
     nextBtn.onclick = ( () => {startGame()});
     if (status === false){
         nextBtn.textContent = 'Give me another chance'
-    } else {
+    } else if (status === true){
         nextBtn.textContent = 'Try me again'
+    } else {
+        nextBtn.textContent = 'Try again'
     }
     buttons.appendChild(nextBtn);
 }
