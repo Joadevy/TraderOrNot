@@ -177,7 +177,10 @@ const initialScreen = () => {
     container.textContent = '';
     const optionStart = document.createElement('BUTTON');
     optionStart.classList.add('start');
-    optionStart.textContent = 'Start game';
+    optionStart.innerHTML = `
+    <img src=assets/icons/start.svg>
+    <p>Start game</p>
+    `;
     optionStart.onclick = (() =>{
         startGame();
     })
@@ -185,19 +188,26 @@ const initialScreen = () => {
 
     const optionFAQ = document.createElement('BUTTON');
     optionFAQ.classList.add('faq');
-    optionFAQ.textContent = 'FAQ';
+    optionFAQ.innerHTML = `
+    <img src=assets/icons/faq.svg>
+    <p>FAQ</p>
+    `;
     optionFAQ.onclick = (()=> {
         showInformation();
     })
     container.appendChild(optionFAQ);
 }
 
+// Display the FAQ's.
 const showInformation = () => {
     container.innerHTML = `
-    <h3>Why the price changes every 5 seconds?</h3>
-    <p>> Because the crypto-currency is a very volatile asset and the market is open 24/7.</p>
+    <h3>Why does the price change every 5 seconds?</h3>
+    <p class='faq-p'>> Because the crypto-currency is a very volatile asset and the market is open 24/7.</p>
+    <h3>Is asset pricing real?</h3>
+    <p class='faq-p'>> Yes, it's the actual price of each asset in the market. So it might not change at some point.</p>
     <h3>How does this game work?</h3>
-    <p>> Basically you</p>
+    <p class='faq-p'>> Basically you need to predict (or guess) the price of the asset within 5 seconds.</p>
+
     <button class = 'return' onclick = "initialScreen()">Return</button>`
 }
 
