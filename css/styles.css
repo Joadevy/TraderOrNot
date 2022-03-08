@@ -86,6 +86,14 @@ button:hover {
     border: 1px solid darkorange;
 }
 
+.faq, .start {
+    padding: 6px;
+    width: 100%;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
 .description {
     border-bottom: 1px solid darkgray;
     margin-bottom: 24px;
@@ -113,6 +121,11 @@ button:hover {
 
 .lose {
     color: red;
+}
+
+.faq-p {
+    margin-bottom: .5rem;
+    text-align: center;
 }
 
 @media only screen and (max-width: 550px) {
