@@ -77,10 +77,10 @@ button:hover {
     border: 1px solid rgb(45, 255, 80);
 }
 
-.start, .next {
+.start, .next, .faq, .return{
     display: block;
     margin: 0 auto;
-    margin-bottom: 32px;  
+    margin-bottom: 10px;  
     margin-top: 4px;
     padding: 6px;
     border: 1px solid darkorange;
