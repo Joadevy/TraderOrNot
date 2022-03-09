@@ -16,7 +16,7 @@ html {
 
 body {
     display: grid;
-    height: 100vh;
+    min-height: 100vh;
     place-content: center;
     background-image: url('../assets/pattern/pattern.jpg');
 }
