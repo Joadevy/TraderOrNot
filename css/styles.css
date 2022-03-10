@@ -32,7 +32,6 @@ header p {
 }
 
 main{
-    margin: 2rem;
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -135,11 +134,16 @@ button:hover {
     }
 
     main{
+        margin: 2rem;
         width: 18.75rem;
-        padding: 32px;
+        padding: 20px;
         border: 1px solid darkorange;
         box-shadow: .5px .5px .5px .5px darkorange;
         border-radius: 10px;
+    }
+
+    .return {
+        margin-top: 25px;
     }
 }
 
