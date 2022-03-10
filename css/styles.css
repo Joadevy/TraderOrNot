@@ -32,6 +32,7 @@ header p {
 }
 
 main{
+    margin: 2rem;
     padding: 40px;
     display: flex;
     flex-direction: column;
