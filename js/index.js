@@ -211,7 +211,7 @@ const showInformation = () => {
     <h3>Is asset pricing real?</h3>
     <p class='faq-p'>> Yes, it's the actual price of each asset in the market. So it might not change at some point.</p>
     <h3>What is a trader?</h3>
-    <p class='faq-p'>> Is a person who make money (or try to) by buying/selling assets. They are constantly trying to predict the future price.</p>
+    <p class='faq-p'>> Is a person who makes money (or try to) by buying/selling assets. They are constantly trying to predict the future price.</p>
 
     <button class = 'return' onclick = "initialScreen()">Return</button>`
 }
