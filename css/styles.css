@@ -42,7 +42,7 @@ main{
     border-bottom-left-radius: 30%;
     border-top-right-radius: 30%;
     border-bottom-right-radius:5%; 
-    background-color: rgb(63, 63, 63);
+    background-image: url('/assets/pattern/endless-constellation.svg');
     color: whitesmoke;
 }
 
