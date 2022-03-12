@@ -1,4 +1,4 @@
-**Welcome everybody to my project👋**
+**Welcome everybody to my project! 👋**
 
 ## Live site 🚀
 - Live Site URL: https://joadevy.github.io/TraderOrNot/
